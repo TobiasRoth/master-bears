@@ -37,5 +37,5 @@ Ausweichmanöver gezeigt.
 
 ## Korrespondenz
 - [2018-11-14](x-devonthink-item://%3CCALj0X1V9187d0sd9Z0EsGdivx8sQPNd=rUTdgz5smpG+5_SkYA@mail.gmail.com%3E): Mail mit Daten und einer Beschreibung des Vorgehens.
-- [2018-11-18](x-devonthink-item://%3CA94B2CCF-3C41-461E-9477-38FBF294CB2B@unibas.ch%3E): Erste Datenaufbereitung und Kontrolle der Daten. 
+- [2018-11-18](x-devonthink-item://%3CA94B2CCF-3C41-461E-9477-38FBF294CB2B@unibas.ch%3E): Erste Datenaufbereitung und Kontrolle der Daten. [Commit](https://github.com/TobiasRoth/master-bears/commit/ea70e9daabf7eb0f47cc7021d0bbfa787f7b4d47).
 
