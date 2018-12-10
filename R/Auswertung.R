@@ -63,4 +63,37 @@ mtext(text = "(proportion of events in 2m circle or contact zone)", side = 2, li
 dev.off()
 
 
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Barplot von Jakob ---
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+dat <- read_excel("Data/Datasheet_Bear_2.0.xlsx") %>% 
+  transmute(day = Collection %>% as.integer(),
+            rep = Replication %>% as.integer,
+            observer = ID,
+            treatment = Setup,
+            n_fish = `Number Fish`,
+            total = as.integer(`Contact`)  + as.integer(`Contact > 10s`) + as.integer(`2m`) + 
+              as.integer(`2m > 10s`) + as.integer(`4m`)  + as.integer(`4m > 10s`) + as.integer(`Response Contact`) +
+              as.integer(`Response 2m`) + as.integer(`Response 4m`),
+            total_2m = as.integer(`Contact`)  + as.integer(`Contact > 10s`) + as.integer(`2m`) + 
+              as.integer(`2m > 10s`) + as.integer(`Response Contact`) +
+              as.integer(`Response 2m`),
+            Resp_2 = `Response 2m` %>% as.integer(),
+            Resp_C = `Response Contact` %>% as.integer(),
+            Resp_4 = `Response 4m` %>% as.integer()) %>% 
+  filter(treatment == "BB" | treatment == "WW")
+
+data.frame(
+  "4m" = tapply(dat$Resp_4, dat$treatment, sum),
+  "2m" = tapply(dat$Resp_2, dat$treatment, sum),
+  "Contact" = tapply(dat$Resp_C, dat$treatment, sum)) %>% 
+  t() %>% 
+  barplot(las = 1, beside=T,
+          legend.text = c("4m", "2m", "Contact"),
+          )
+
+dat$treatment<-factor(dat$treatment, levels = c("BB", "WW"))
+tapply(dat$Resp_2, dat$treatment, sum) %>% barplot(las = 1)
+tapply(dat$Resp_C, dat$treatment, sum) %>% barplot(las = 1, beside=T)
+tapply(dat$Resp_4, dat$treatment, sum) %>% barplot(las = 1, beside=T)
 
